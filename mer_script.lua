@@ -5,7 +5,7 @@ local imageId = "rbxassetid://93669941436109"
 local soundId = "rbxassetid://128037871574654"
 local repeatCount = 3
 local delayBeforeStart = 5
-local delayBetween = 10
+local delayBetween = 5
 
 wait(delayBeforeStart)
 
@@ -28,7 +28,7 @@ local function playMer()
 	s.Parent = playerGui
 	s:Play()
 
-	wait(2)
+	wait(1)
 	g:Destroy()
 end
 

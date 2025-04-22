@@ -40,7 +40,7 @@ local function neuroStorm()
 
 	local ts = game:GetService("TweenService")
 
-	local soundId = "rbxassetid://9118823105"
+	local soundId = "rbxassetid://136487827237413"
 
 	spawn(function()
 		for i = 1, 2 do

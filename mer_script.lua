@@ -54,26 +54,24 @@ local function neuroStorm()
 		end
 	end)
 
-	-- Ускоряем и увеличиваем количество объектов
 	for _ = 1, 100 do
 		local f = Instance.new("Frame")
-		f.Size = UDim2.new(math.random(1, 3), 0, math.random(1, 3), 0)  -- Увеличиваем размер объектов
+		f.Size = UDim2.new(math.random(2, 4), 0, math.random(2, 4), 0)
 		f.Position = UDim2.new(math.random(), 0, math.random(), 0)
-		f.BackgroundColor3 = Color3.fromRGB(math.random(100, 255), math.random(100, 255), math.random(100, 255))  -- Яркие, кислотные цвета
+		f.BackgroundColor3 = Color3.fromRGB(math.random(100, 255), math.random(100, 255), math.random(100, 255))
 		f.BorderSizePixel = 0
-		f.BackgroundTransparency = math.random()
+		f.BackgroundTransparency = 0.2
 		f.Rotation = math.random(-360, 360)
-		f.ZIndex = math.random(5, 20)  -- Увеличиваем слои
+		f.ZIndex = math.random(5, 20)
 		f.Parent = gui
 
-		local tween = ts:Create(f, TweenInfo.new(0.05, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, -1, true), {  -- Ускоряем анимации
+		local tween = ts:Create(f, TweenInfo.new(0.05, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, -1, true), {
 			Position = UDim2.new(math.random(), 0, math.random(), 0),
-			Rotation = math.random(-720, 720)  -- Увеличиваем скорость вращения
+			Rotation = math.random(-720, 720),
 		})
 		tween:Play()
 	end
 
-	-- Добавляем больше текста, яркого и мигающего
 	for _ = 1, 50 do
 		local txt = Instance.new("TextLabel")
 		txt.Size = UDim2.new(0, math.random(300, 500), 0, math.random(50, 100))
@@ -84,22 +82,21 @@ local function neuroStorm()
 		txt.TextColor3 = Color3.fromRGB(math.random(100, 255), math.random(100, 255), math.random(100, 255))
 		txt.Font = Enum.Font.Arcade
 		txt.Rotation = math.random(-180, 180)
-		txt.ZIndex = 20  -- Сделаем текст более заметным
+		txt.ZIndex = 20
 		txt.Parent = gui
 	end
 
-	-- Стробоскопный эффект
 	spawn(function()
 		for _ = 1, 150 do
 			gui.BackgroundColor3 = Color3.fromRGB(math.random(255), math.random(255), math.random(255))
-			gui.BackgroundTransparency = 0.3  -- Сделаем меньше прозрачность, чтобы цвета были ярче
-			wait(0.03)
-			gui.BackgroundTransparency = 0.7
-			wait(0.03)
+			gui.BackgroundTransparency = 0.1
+			wait(0.02)
+			gui.BackgroundTransparency = 0.5
+			wait(0.02)
 		end
 	end)
 
-	wait(10)  -- Время лоботомии
+	wait(10)
 	gui:Destroy()
 end
 

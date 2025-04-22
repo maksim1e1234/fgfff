@@ -12,6 +12,7 @@ wait(delayBeforeStart)
 local function playMer()
 	local g = Instance.new("ScreenGui")
 	g.ResetOnSpawn = false
+	g.IgnoreGuiInset = true
 	g.Parent = playerGui
 
 	local i = Instance.new("ImageLabel")
@@ -34,39 +35,54 @@ end
 local function neuroStorm()
 	local gui = Instance.new("ScreenGui")
 	gui.ResetOnSpawn = false
+	gui.IgnoreGuiInset = true
 	gui.Parent = playerGui
 
-	for _ = 1, 20 do
+	local ts = game:GetService("TweenService")
+
+	for _ = 1, 50 do
 		local f = Instance.new("Frame")
 		f.Size = UDim2.new(math.random(), 0, math.random(), 0)
 		f.Position = UDim2.new(math.random(), 0, math.random(), 0)
 		f.BackgroundColor3 = Color3.fromRGB(math.random(255), math.random(255), math.random(255))
 		f.BorderSizePixel = 0
 		f.BackgroundTransparency = math.random()
+		f.Rotation = math.random(-180, 180)
+		f.ZIndex = math.random(1, 5)
 		f.Parent = gui
 
-		local rotTween = game:GetService("TweenService"):Create(
-			f,
-			TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true),
-			{ Rotation = math.random(-180, 180) }
-		)
-		rotTween:Play()
+		local tween = ts:Create(f, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, -1, true), {
+			Position = UDim2.new(math.random(), 0, math.random(), 0),
+			Rotation = math.random(-360, 360)
+		})
+		tween:Play()
 	end
 
-	for _ = 1, 10 do
+	for _ = 1, 30 do
 		local txt = Instance.new("TextLabel")
-		txt.Size = UDim2.new(0, 300, 0, 100)
+		txt.Size = UDim2.new(0, math.random(200, 400), 0, math.random(50, 150))
 		txt.Position = UDim2.new(math.random(), 0, math.random(), 0)
 		txt.BackgroundTransparency = 1
-		txt.Text = "???"
-		txt.TextSize = math.random(40, 80)
+		txt.Text = "!!!"
+		txt.TextSize = math.random(50, 100)
 		txt.TextColor3 = Color3.fromRGB(math.random(255), math.random(255), math.random(255))
 		txt.Font = Enum.Font.Arcade
-		txt.Rotation = math.random(-45, 45)
+		txt.Rotation = math.random(-180, 180)
+		txt.ZIndex = 10
 		txt.Parent = gui
 	end
 
-	wait(3)
+	spawn(function()
+		for i = 1, 60 do
+			gui.BackgroundColor3 = Color3.fromRGB(math.random(255), math.random(255), math.random(255))
+			gui.BackgroundTransparency = 0.5
+			wait(0.05)
+			gui.BackgroundTransparency = 1
+			wait(0.05)
+		end
+	end)
+
+	wait(7)
 	gui:Destroy()
 end
 

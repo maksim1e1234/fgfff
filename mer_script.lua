@@ -5,7 +5,7 @@ local imageId = "rbxassetid://93669941436109"
 local soundId = "rbxassetid://128037871574654"
 local repeatCount = 3
 local delayBeforeStart = 5
-local delayBetween = 5
+local delayBetween = 10
 
 wait(delayBeforeStart)
 
@@ -28,7 +28,7 @@ local function playMer()
 	s.Parent = playerGui
 	s:Play()
 
-	wait(1)
+	wait(2)
 	g:Destroy()
 end
 
@@ -40,7 +40,7 @@ local function neuroStorm()
 
 	local ts = game:GetService("TweenService")
 
-	local soundId = "rbxassetid://8883003075"
+	local soundId = "rbxassetid://9118823105"
 
 	spawn(function()
 		for i = 1, 2 do
@@ -54,49 +54,52 @@ local function neuroStorm()
 		end
 	end)
 
-	for _ = 1, 50 do
+	-- Ускоряем и увеличиваем количество объектов
+	for _ = 1, 100 do
 		local f = Instance.new("Frame")
-		f.Size = UDim2.new(math.random(), 0, math.random(), 0)
+		f.Size = UDim2.new(math.random(1, 3), 0, math.random(1, 3), 0)  -- Увеличиваем размер объектов
 		f.Position = UDim2.new(math.random(), 0, math.random(), 0)
-		f.BackgroundColor3 = Color3.fromRGB(math.random(255), math.random(255), math.random(255))
+		f.BackgroundColor3 = Color3.fromRGB(math.random(100, 255), math.random(100, 255), math.random(100, 255))  -- Яркие, кислотные цвета
 		f.BorderSizePixel = 0
 		f.BackgroundTransparency = math.random()
-		f.Rotation = math.random(-180, 180)
-		f.ZIndex = math.random(1, 5)
+		f.Rotation = math.random(-360, 360)
+		f.ZIndex = math.random(5, 20)  -- Увеличиваем слои
 		f.Parent = gui
 
-		local tween = ts:Create(f, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, -1, true), {
+		local tween = ts:Create(f, TweenInfo.new(0.05, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, -1, true), {  -- Ускоряем анимации
 			Position = UDim2.new(math.random(), 0, math.random(), 0),
-			Rotation = math.random(-360, 360)
+			Rotation = math.random(-720, 720)  -- Увеличиваем скорость вращения
 		})
 		tween:Play()
 	end
 
-	for _ = 1, 30 do
+	-- Добавляем больше текста, яркого и мигающего
+	for _ = 1, 50 do
 		local txt = Instance.new("TextLabel")
-		txt.Size = UDim2.new(0, math.random(200, 400), 0, math.random(50, 150))
+		txt.Size = UDim2.new(0, math.random(300, 500), 0, math.random(50, 100))
 		txt.Position = UDim2.new(math.random(), 0, math.random(), 0)
 		txt.BackgroundTransparency = 1
 		txt.Text = "!!!"
-		txt.TextSize = math.random(50, 100)
-		txt.TextColor3 = Color3.fromRGB(math.random(255), math.random(255), math.random(255))
+		txt.TextSize = math.random(60, 120)
+		txt.TextColor3 = Color3.fromRGB(math.random(100, 255), math.random(100, 255), math.random(100, 255))
 		txt.Font = Enum.Font.Arcade
 		txt.Rotation = math.random(-180, 180)
-		txt.ZIndex = 10
+		txt.ZIndex = 20  -- Сделаем текст более заметным
 		txt.Parent = gui
 	end
 
+	-- Стробоскопный эффект
 	spawn(function()
-		for _ = 1, 100 do
+		for _ = 1, 150 do
 			gui.BackgroundColor3 = Color3.fromRGB(math.random(255), math.random(255), math.random(255))
-			gui.BackgroundTransparency = 0.5
-			wait(0.05)
-			gui.BackgroundTransparency = 1
-			wait(0.05)
+			gui.BackgroundTransparency = 0.3  -- Сделаем меньше прозрачность, чтобы цвета были ярче
+			wait(0.03)
+			gui.BackgroundTransparency = 0.7
+			wait(0.03)
 		end
 	end)
 
-	wait(10)
+	wait(10)  -- Время лоботомии
 	gui:Destroy()
 end
 

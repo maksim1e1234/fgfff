@@ -3,7 +3,7 @@ local playerGui = player:WaitForChild("PlayerGui")
 
 local imageId = "rbxassetid://93669941436109"
 local soundId = "rbxassetid://128037871574654"
-local repeatCount = 3
+local repeatCount = 8
 local delayBeforeStart = 5
 local delayBetween = 10
 

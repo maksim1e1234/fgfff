@@ -1,0 +1,42 @@
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+
+local imageId = "rbxassetid://93669941436109"
+local soundId = "rbxassetid://128037871574654"
+local repeatCount = 3
+local delayBeforeStart = 5
+local delayBetween = 10
+
+
+wait(delayBeforeStart)
+
+
+local function playMer()
+	local merGui = Instance.new("ScreenGui")
+	merGui.ResetOnSpawn = false
+	merGui.Parent = playerGui
+
+	local imageLabel = Instance.new("ImageLabel")
+	imageLabel.Size = UDim2.new(1, 0, 1, 0)
+	imageLabel.Position = UDim2.new(0, 0, 0, 0)
+	imageLabel.BackgroundTransparency = 1
+	imageLabel.Image = imageId
+	imageLabel.Parent = merGui
+
+	local sound = Instance.new("Sound")
+	sound.SoundId = soundId
+	sound.Volume = 100
+	sound.Parent = playerGui
+	sound:Play()
+
+
+	wait(2)
+	merGui:Destroy()
+end
+
+
+for i = 1, repeatCount do
+	playMer()
+	wait(delayBetween)
+end

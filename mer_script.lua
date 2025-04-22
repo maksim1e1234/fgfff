@@ -10,28 +10,59 @@ local delayBetween = 10
 wait(delayBeforeStart)
 
 local function playMer()
-	local merGui = Instance.new("ScreenGui")
-	merGui.ResetOnSpawn = false
-	merGui.Parent = playerGui
+	local g = Instance.new("ScreenGui")
+	g.ResetOnSpawn = false
+	g.Parent = playerGui
 
-	local imageLabel = Instance.new("ImageLabel")
-	imageLabel.Size = UDim2.new(1, 0, 1, 0)
-	imageLabel.Position = UDim2.new(0, 0, 0, 0)
-	imageLabel.BackgroundTransparency = 1
-	imageLabel.Image = imageId
-	imageLabel.Parent = merGui
+	local i = Instance.new("ImageLabel")
+	i.Size = UDim2.new(1, 0, 1, 0)
+	i.Position = UDim2.new(0, 0, 0, 0)
+	i.BackgroundTransparency = 1
+	i.Image = imageId
+	i.Parent = g
 
-	local sound = Instance.new("Sound")
-	sound.SoundId = soundId
-	sound.Volume = 100
-	sound.Parent = playerGui
-	sound:Play()
+	local s = Instance.new("Sound")
+	s.SoundId = soundId
+	s.Volume = 100
+	s.Parent = playerGui
+	s:Play()
 
 	wait(2)
-	merGui:Destroy()
+	g:Destroy()
 end
 
-for i = 1, repeatCount do
+local function visualBurst()
+	for _ = 1, 10 do
+		local t = Instance.new("TextLabel")
+		t.Size = UDim2.new(0, math.random(50, 200), 0, math.random(50, 200))
+		t.Position = UDim2.new(math.random(), 0, math.random(), 0)
+		t.BackgroundTransparency = 1
+		t.Text = "!!!"
+		t.TextColor3 = Color3.fromRGB(math.random(255), math.random(255), math.random(255))
+		t.TextSize = math.random(20, 50)
+		t.Parent = playerGui
+
+		local ts = game:GetService("TweenService")
+		local goal = { Position = UDim2.new(math.random(), 0, math.random(), 0) }
+		local ti = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true)
+		ts:Create(t, ti, goal):Play()
+
+		wait(0.1)
+	end
+
+	local f = Instance.new("Frame")
+	f.Size = UDim2.new(1, 0, 1, 0)
+	f.BackgroundColor3 = Color3.fromRGB(math.random(255), math.random(255), math.random(255))
+	f.BackgroundTransparency = 0.5
+	f.Parent = playerGui
+
+	wait(0.2)
+	f:Destroy()
+end
+
+for _ = 1, repeatCount do
 	playMer()
 	wait(delayBetween)
+	visualBurst()
+	wait(1)
 end

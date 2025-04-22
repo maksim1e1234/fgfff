@@ -40,7 +40,7 @@ local function neuroStorm()
 
 	local ts = game:GetService("TweenService")
 
-	for _ = 1, 50 do
+	for _ = 1, 60 do
 		local f = Instance.new("Frame")
 		f.Size = UDim2.new(math.random(), 0, math.random(), 0)
 		f.Position = UDim2.new(math.random(), 0, math.random(), 0)
@@ -58,7 +58,7 @@ local function neuroStorm()
 		tween:Play()
 	end
 
-	for _ = 1, 30 do
+	for _ = 1, 40 do
 		local txt = Instance.new("TextLabel")
 		txt.Size = UDim2.new(0, math.random(200, 400), 0, math.random(50, 150))
 		txt.Position = UDim2.new(math.random(), 0, math.random(), 0)
@@ -82,7 +82,7 @@ local function neuroStorm()
 		end
 	end)
 
-	wait(7)
+	wait(20)
 	gui:Destroy()
 end
 

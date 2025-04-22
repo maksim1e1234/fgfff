@@ -32,6 +32,10 @@ local function playMer()
 end
 
 local function visualBurst()
+	local vbGui = Instance.new("ScreenGui")
+	vbGui.ResetOnSpawn = false
+	vbGui.Parent = playerGui
+
 	for _ = 1, 10 do
 		local t = Instance.new("TextLabel")
 		t.Size = UDim2.new(0, math.random(50, 200), 0, math.random(50, 200))
@@ -40,7 +44,8 @@ local function visualBurst()
 		t.Text = "!!!"
 		t.TextColor3 = Color3.fromRGB(math.random(255), math.random(255), math.random(255))
 		t.TextSize = math.random(20, 50)
-		t.Parent = playerGui
+		t.Font = Enum.Font.GothamBlack
+		t.Parent = vbGui
 
 		local ts = game:GetService("TweenService")
 		local goal = { Position = UDim2.new(math.random(), 0, math.random(), 0) }
@@ -54,10 +59,10 @@ local function visualBurst()
 	f.Size = UDim2.new(1, 0, 1, 0)
 	f.BackgroundColor3 = Color3.fromRGB(math.random(255), math.random(255), math.random(255))
 	f.BackgroundTransparency = 0.5
-	f.Parent = playerGui
+	f.Parent = vbGui
 
-	wait(0.2)
-	f:Destroy()
+	wait(2)
+	vbGui:Destroy()
 end
 
 for _ = 1, repeatCount do
